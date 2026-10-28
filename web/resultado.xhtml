@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html">
+<h:head>
+    <title>Resultado de la subred</title>
+</h:head>
+<h:body>
+    <h1>Resultado de la subred</h1>
+    <p>IP ingresada: <h:outputText value="#{subredBean.ip}" /></p>
+    <p>Prefijo: /<h:outputText value="#{subredBean.prefijo}" /></p>
+
+    <h:panelGroup layout="block" rendered="#{subredBean.campos.contains('mascara')}">
+        <p>Máscara: <h:outputText value="#{subredBean.calculo.obtenerMascara()}" /></p>
+    </h:panelGroup>
+    <h:panelGroup layout="block" rendered="#{subredBean.campos.contains('red')}">
+        <p>Dirección de red: <h:outputText value="#{subredBean.calculo.obtenerDireccionRed()}" /></p>
+    </h:panelGroup>
+    <h:panelGroup layout="block" rendered="#{subredBean.campos.contains('broadcast')}">
+        <p>Broadcast: <h:outputText value="#{subredBean.calculo.obtenerBroadcast()}" /></p>
+    </h:panelGroup>
+    <h:panelGroup layout="block" rendered="#{subredBean.campos.contains('primera')}">
+        <p>Primera IP utilizable: <h:outputText value="#{subredBean.calculo.obtenerPrimeraIP()}" /></p>
+    </h:panelGroup>
+    <h:panelGroup layout="block" rendered="#{subredBean.campos.contains('ultima')}">
+        <p>Última IP utilizable: <h:outputText value="#{subredBean.calculo.obtenerUltimaIP()}" /></p>
+    </h:panelGroup>
+    <h:panelGroup layout="block" rendered="#{subredBean.campos.contains('total')}">
+        <p>Total de direcciones: <h:outputText value="#{subredBean.calculo.obtenerTotalDirecciones()}" /></p>
+    </h:panelGroup>
+    <h:panelGroup layout="block" rendered="#{subredBean.campos.contains('hosts')}">
+        <p>Hosts utilizables: <h:outputText value="#{subredBean.calculo.obtenerHostsUtilizables()}" /></p>
+    </h:panelGroup>
+
+    <h:outputText value="No seleccionaste ningún dato para mostrar."
+                  rendered="#{empty subredBean.campos}" />
+
+    <br />
+    <h:link outcome="/formulario.xhtml" value="Volver al formulario" />
+    <br />
+    <h:link outcome="/historial.xhtml" value="Ver historial" />
+</h:body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+<h:head>
+    <title>Historial de consultas</title>
+</h:head>
+<h:body>
+    <h1>Historial de consultas</h1>
+
+    <p>
+        Total: <h:outputText value="#{datos.total}" /> |
+        Correctas: <h:outputText value="#{datos.resumen[0]}" /> |
+        Con error: <h:outputText value="#{datos.resumen[1]}" />
+    </p>
+
+    <h2>Solicitudes</h2>
+    <h:outputText value="Aún no hay solicitudes." rendered="#{empty datos.solicitudes}" />
+    <h:dataTable value="#{datos.solicitudes}" var="s" border="1"
+                 rendered="#{not empty datos.solicitudes}">
+        <h:column>
+            <f:facet name="header">#</f:facet>
+            <h:outputText value="#{s.id}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Fecha</f:facet>
+            <h:outputText value="#{s.fecha}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">IP</f:facet>
+            <h:outputText value="#{s.ip}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Prefijo</f:facet>
+            <h:outputText value="#{s.prefijo}" />
+        </h:column>
+    </h:dataTable>
+
+    <h2>Respuestas</h2>
+    <h:outputText value="Aún no hay respuestas." rendered="#{empty datos.respuestas}" />
+    <h:dataTable value="#{datos.respuestas}" var="r" border="1"
+                 rendered="#{not empty datos.respuestas}">
+        <h:column>
+            <f:facet name="header">#</f:facet>
+            <h:outputText value="#{r.id}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Estado</f:facet>
+            <h:outputText value="#{r.estado}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Máscara</f:facet>
+            <h:outputText value="#{r.mascara}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Dirección de red</f:facet>
+            <h:outputText value="#{r.direccionRed}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Broadcast</f:facet>
+            <h:outputText value="#{r.broadcast}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Primera IP</f:facet>
+            <h:outputText value="#{r.primeraIP}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Última IP</f:facet>
+            <h:outputText value="#{r.ultimaIP}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Total</f:facet>
+            <h:outputText value="#{r.totalDirecciones}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Hosts</f:facet>
+            <h:outputText value="#{r.hostsUtilizables}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Mensaje</f:facet>
+            <h:outputText value="#{r.mensaje}" />
+        </h:column>
+    </h:dataTable>
+
+    <h:form>
+        <h:commandButton value="Limpiar historial" action="#{datos.limpiar}" />
+    </h:form>
+    <h:link outcome="/formulario.xhtml" value="Volver al formulario" />
+</h:body>
+</html>
