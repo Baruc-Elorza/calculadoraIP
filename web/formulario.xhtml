@@ -43,8 +43,8 @@
             actionListener="#{subredBean.validar}"
             action="#{subredBean.navegar}" />
 
-        <h:panelGroup layout="block" rendered="#{not empty SubredBean.error}">
-            <p><h:outputText value="#{SubredBean.error}" /></p>
+        <h:panelGroup layout="block" rendered="#{not empty subredBean.error}">
+            <p><h:outputText value="#{subredBean.error}" /></p>
         </h:panelGroup>
 
     </h:form>
