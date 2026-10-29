@@ -20,6 +20,7 @@ public class SubredBean {
     private Integer prefijo;
     private CSubred calculo;
     private String error;
+    private boolean valido;
 
     // Checkboxes: datos que el usuario quiere ver (empiezan todos marcados)
     private List<String> campos = new ArrayList<>(Arrays.asList(
@@ -28,12 +29,6 @@ public class SubredBean {
     public String calcular() {
         calculo = null;
         error = null;
-
-        if (!validarIP(ip)) {
-            error = "La dirección IP no es válida.";
-            datos.registrarError(ip, prefijo, error);
-            return "/ip-invalida.xhtml";
-        }
 
         try {
             if (prefijo == null) {
@@ -51,6 +46,16 @@ public class SubredBean {
         }
     }
 
+    public void validar(){
+        valido=validarIP(ip);
+    }
+    
+    public String navegar(){
+        if(valido){
+            return calcular();
+        }return "/ip-invalida.xhtml";
+    }
+    
     private boolean validarIP(String direccion) {
         if (direccion == null || direccion.trim().isEmpty()) {
             return false;
@@ -83,4 +88,14 @@ public class SubredBean {
 
     public List<String> getCampos() { return campos; }
     public void setCampos(List<String> campos) { this.campos = campos; }
+
+    public boolean isValido() {
+        return valido;
+    }
+
+    public void setValido(boolean valido) {
+        this.valido = valido;
+    }
+    
+    
 }
