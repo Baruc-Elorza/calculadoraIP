@@ -30,6 +30,12 @@ public class SubredBean {
         calculo = null;
         error = null;
 
+        if (!validarIP(ip)) {
+            error = "La dirección IP no es válida.";
+            datos.registrarError(ip, prefijo, error);
+            return "/ip-invalida.xhtml";
+        }
+
         try {
             if (prefijo == null) {
                 error = "Escribe un prefijo CIDR entre 0 y 32.";
