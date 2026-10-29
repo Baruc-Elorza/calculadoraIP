@@ -14,9 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     <h1>Historial de consultas</h1>
 
     <p>
-        Total: <h:outputText value="#{datos.total}" /> |
-        Correctas: <h:outputText value="#{datos.resumen[0]}" /> |
-        Con error: <h:outputText value="#{datos.resumen[1]}" />
+        Total de consultas: <h:outputText value="#{datos.total}" />
     </p>
 
     <h2>Solicitudes</h2>
@@ -50,10 +48,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             <h:outputText value="#{r.id}" />
         </h:column>
         <h:column>
-            <f:facet name="header">Estado</f:facet>
-            <h:outputText value="#{r.estado}" />
-        </h:column>
-        <h:column>
             <f:facet name="header">Máscara</f:facet>
             <h:outputText value="#{r.mascara}" />
         </h:column>
@@ -80,10 +74,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <h:column>
             <f:facet name="header">Hosts</f:facet>
             <h:outputText value="#{r.hostsUtilizables}" />
-        </h:column>
-        <h:column>
-            <f:facet name="header">Mensaje</f:facet>
-            <h:outputText value="#{r.mensaje}" />
         </h:column>
     </h:dataTable>
 

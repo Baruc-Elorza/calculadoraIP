@@ -31,14 +31,13 @@ public class SubredBean {
 
         if (!validarIP(ip)) {
             error = "La dirección IP no es válida.";
-            datos.registrarError(ip, prefijo, error);
             return "/ip-invalida.xhtml";
         }
 
         try {
             if (prefijo == null) {
                 error = "Escribe un prefijo CIDR entre 0 y 32.";
-                datos.registrarError(ip, prefijo, error);
+                
                 return null;
             }
             calculo = new CSubred(ip.trim(), prefijo);
@@ -46,7 +45,7 @@ public class SubredBean {
             return "/resultado.xhtml";
         } catch (IllegalArgumentException e) {
             error = e.getMessage();
-            datos.registrarError(ip, prefijo, error);
+            
             return null;
         }
     }
